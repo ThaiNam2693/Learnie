@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LearnieService.Models
 {
@@ -12,6 +13,12 @@ namespace LearnieService.Models
 
 		[Required]
 		public string? QuestionDescription { get; set; }
+
+		[Required]
+		public int QuestionSetID { get; set; }
+
+		[JsonIgnore]
+		public QuestionSet QuestionSet { get; set; }
 
 		public ICollection<Answer> Answers { get; set; }
 	}

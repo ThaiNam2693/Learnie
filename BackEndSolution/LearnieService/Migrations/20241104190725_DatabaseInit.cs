@@ -107,7 +107,7 @@ namespace LearnieService.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     QuestionContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     QuestionDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QuestionSetID = table.Column<int>(type: "int", nullable: true)
+                    QuestionSetID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -116,7 +116,8 @@ namespace LearnieService.Migrations
                         name: "FK_Questions_QuestionSets_QuestionSetID",
                         column: x => x.QuestionSetID,
                         principalTable: "QuestionSets",
-                        principalColumn: "QuestionSetID");
+                        principalColumn: "QuestionSetID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

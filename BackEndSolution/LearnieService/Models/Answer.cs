@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LearnieService.Models
 {
@@ -17,6 +18,7 @@ namespace LearnieService.Models
 		[ForeignKey("Question")]
 		public int QuestionID { get; set; }
 
+		[JsonIgnore]
 		public Question Question { get; set; }
 	}
 }

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace LearnieService.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("service/[controller]")]
 	[ApiController]
 	public class UsersController : Controller
 	{

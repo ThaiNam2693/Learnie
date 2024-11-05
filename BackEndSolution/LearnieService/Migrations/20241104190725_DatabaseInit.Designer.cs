@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LearnieService.Migrations
 {
     [DbContext(typeof(LearnieDatabaseContext))]
-    [Migration("20241104184759_DatabaseInit")]
+    [Migration("20241104190725_DatabaseInit")]
     partial class DatabaseInit
     {
         /// <inheritdoc />
@@ -120,7 +120,7 @@ namespace LearnieService.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("QuestionSetID")
+                    b.Property<int>("QuestionSetID")
                         .HasColumnType("int");
 
                     b.HasKey("QuestionID");
@@ -233,9 +233,13 @@ namespace LearnieService.Migrations
 
             modelBuilder.Entity("LearnieService.Models.Question", b =>
                 {
-                    b.HasOne("LearnieService.Models.QuestionSet", null)
+                    b.HasOne("LearnieService.Models.QuestionSet", "QuestionSet")
                         .WithMany("Questions")
-                        .HasForeignKey("QuestionSetID");
+                        .HasForeignKey("QuestionSetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuestionSet");
                 });
 
             modelBuilder.Entity("LearnieService.Models.QuestionSet", b =>
