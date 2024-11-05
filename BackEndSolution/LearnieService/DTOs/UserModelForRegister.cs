@@ -7,7 +7,7 @@ namespace LearnieService.DTOs
 		[EmailAddress]
 		public string UserEmail { get; set; }
 
-		[MinLength(8, ErrorMessage = "Password at least eight characters.")]
+		[MinLength(8, ErrorMessage = "Password at least 8 characters.")]
 		public string UserPassword { get; set; }
 	}
 }

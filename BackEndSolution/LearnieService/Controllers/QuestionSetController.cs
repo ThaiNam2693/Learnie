@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LearnieService.DTOs;
 using LearnieService.LearnieDbContext;
 using LearnieService.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -19,16 +20,28 @@ namespace LearnieService.Controllers
 			_mapper = mapper;
 		}
 
-		[HttpGet("GetAllQuestionSets")]
-		public ActionResult<IEnumerable<QuestionSet>?> GetAllQuestionSets() => _db.QuestionSets.ToList();
+		[HttpGet("GetAllQuestionSets/{Email}")]
+		public ActionResult<IEnumerable<QuestionSet>?> GetAllQuestionSets(string Email) {
+			var user = _db.Users.FirstOrDefault(x => x.UserEmail == Email);
+			var list = _db.QuestionSets.Where(x => x.UserID == user.UserID).ToList();
+			return list;
+		}
+
+		[HttpPost("CreateQuestionSet")]
+		public ActionResult CreateQuestionSet(QuestionSetDTO questionSet)
+		{
+			var user = _db.Users.FirstOrDefault(x => x.UserEmail == questionSet.Email);
+			QuestionSet data = new QuestionSet
+			{
+				UserID = user.UserID,
+				QuestSetName = questionSet.QuestSetName
+			};
+			_db.QuestionSets.Add(data);
+			_db.SaveChanges();
+			return Ok();
+		}
 
 		[HttpGet("GetAllQuestions/{qsid}")]
 		public ActionResult<IEnumerable<Question>?> GetAllQuestions(int qsid) => _db.Questions.Where(q => q.QuestionSetID == qsid).Include(q => q.Answers).ToList();
-
-		[HttpPost("CreateQuestionSet")]
-		public IActionResult CreateQuestionSet(QuestionSet questionSet) 
-		{
-			return Ok();
-		}
 	}
 }
