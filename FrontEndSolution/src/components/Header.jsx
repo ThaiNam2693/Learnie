@@ -3,9 +3,8 @@ import HomeIcon from "../assets/Homefilled.svg";
 import OpenFolder from "../assets/Folderopen.svg";
 import Group from "../assets/Group.svg";
 import Look from "../assets/Look.svg";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const Header = () => {
-
   const navigate = useNavigate();
 
   return (
@@ -17,10 +16,10 @@ const Header = () => {
               LEARNIE
             </div>
             <div className="pl-3 flex justify-between items-center gap-6">
-              <div>
+              <div onClick={() => navigate("/")}>
                 <img src={HomeIcon} alt="" />
               </div>
-              <div>
+              <div onClick={() => navigate("/question")}>
                 <img src={OpenFolder} alt="" />
               </div>
               <div>
@@ -33,13 +32,15 @@ const Header = () => {
               <img src={Look} alt="" className="ml-auto" />
             </div>
             <button
-            onClick={() => navigate('/register')}
-            className="w-[172px] h-[32px] bg-[#F39DAA] rounded-3xl t text-[#B2152D] flex justify-center items-center mt-1 font-newsreader text-[18px] hover:opacity-70">
+              onClick={() => navigate("/register")}
+              className="w-[172px] h-[32px] bg-[#F39DAA] rounded-3xl t text-[#B2152D] flex justify-center items-center mt-1 font-newsreader text-[18px] hover:opacity-70"
+            >
               Đăng ký
             </button>
             <button
-            onClick={() => navigate('/login')}
-            className="w-[172px] h-[32px] bg-[#F39DAA] rounded-3xl t text-[#B2152D] flex justify-center items-center mt-1 font-newsreader text-[18px] hover:opacity-70">
+              onClick={() => navigate("/login")}
+              className="w-[172px] h-[32px] bg-[#F39DAA] rounded-3xl t text-[#B2152D] flex justify-center items-center mt-1 font-newsreader text-[18px] hover:opacity-70"
+            >
               Đăng nhập
             </button>
           </div>

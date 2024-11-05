@@ -5,7 +5,7 @@ import instagramIcon from "../assets/instagram.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#704FE6] text-white py-10 px-32 text-center w-full border-t border-gray-300 ">
+    <footer className="bg-[#704FE6] text-white py-10 px-32 text-center w-full border-t border-gray-300 mb-0 ">
       <div className="container mx-auto px-4">
         {/* Phần trên của footer */}
         <div className="flex justify-between items-center flex-col md:flex-row">
