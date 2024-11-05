@@ -3,8 +3,10 @@ import HomeIcon from "../assets/Homefilled.svg";
 import OpenFolder from "../assets/Folderopen.svg";
 import Group from "../assets/Group.svg";
 import Look from "../assets/Look.svg";
-
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="w-full h-24 p-5">
@@ -14,10 +16,10 @@ const Header = () => {
               LEARNIE
             </div>
             <div className="pl-3 flex justify-between items-center gap-6">
-              <div>
+              <div onClick={() => navigate("/")}>
                 <img src={HomeIcon} alt="" />
               </div>
-              <div>
+              <div onClick={() => navigate("/question")}>
                 <img src={OpenFolder} alt="" />
               </div>
               <div>
@@ -29,10 +31,16 @@ const Header = () => {
             <div className="w-[315px] h-[42px] bg-[#F1F1F1] rounded-3xl flex items-center p-3 ">
               <img src={Look} alt="" className="ml-auto" />
             </div>
-            <button className="w-[172px] h-[32px] bg-[#F39DAA] rounded-3xl t text-[#B2152D] flex justify-center items-center mt-1 font-newsreader text-[18px] hover:opacity-70">
+            <button
+              onClick={() => navigate("/register")}
+              className="w-[172px] h-[32px] bg-[#F39DAA] rounded-3xl t text-[#B2152D] flex justify-center items-center mt-1 font-newsreader text-[18px] hover:opacity-70"
+            >
               Đăng ký
             </button>
-            <button className="w-[172px] h-[32px] bg-[#F39DAA] rounded-3xl t text-[#B2152D] flex justify-center items-center mt-1 font-newsreader text-[18px] hover:opacity-70">
+            <button
+              onClick={() => navigate("/login")}
+              className="w-[172px] h-[32px] bg-[#F39DAA] rounded-3xl t text-[#B2152D] flex justify-center items-center mt-1 font-newsreader text-[18px] hover:opacity-70"
+            >
               Đăng nhập
             </button>
           </div>
