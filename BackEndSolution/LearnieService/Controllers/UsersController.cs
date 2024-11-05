@@ -30,10 +30,10 @@ namespace LearnieService.Controllers
 
 			if (user != null)
 			{
-				return Ok("Login successful");
+				return Ok(new { message = "Login Successfully" });
 			}
 
-			return Unauthorized("Invalid email or password");
+			return Unauthorized(new { message = "Invalid email or password" });
 		}
 
 		[HttpPost("Register")]
@@ -41,12 +41,17 @@ namespace LearnieService.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
-				return BadRequest(ModelState);
+				var errors = ModelState.Values
+										.SelectMany(v => v.Errors)
+										.Select(e => e.ErrorMessage)
+										.ToList();
+
+				return BadRequest(new { message = "Validation errors", errors });
 			}
 
 			if (_db.Users.Any(u => u.UserEmail == userModel.UserEmail))
 			{
-				return BadRequest("Email already registered");
+				return BadRequest(new { message = "Email already registered" });
 			}
 
 			userModel.UserPassword = HashPassword(userModel.UserPassword);
@@ -55,7 +60,7 @@ namespace LearnieService.Controllers
 			_db.Users.Add(user);
 			_db.SaveChanges();
 
-			return Ok("Registration successful");
+			return Ok(new { message = "Login Successfully" });
 		}
 
 		private string HashPassword(string password)
