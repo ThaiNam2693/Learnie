@@ -1,4 +1,4 @@
-using LearnieService.Core;
+﻿using LearnieService.Core;
 using LearnieService.LearnieDbContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("All",
-		builder => builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+		builder => builder.
+		WithOrigins("http://localhost:5173")
+		.AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 });
 
 var app = builder.Build();
@@ -30,9 +32,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("All");
 app.UseAuthorization();
 
-app.UseCors("All");
 
 app.MapControllers();
 
