@@ -14,7 +14,7 @@ const Login = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name] : e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -23,10 +23,11 @@ const Login = () => {
     try {
       const response = await axios.post("https://localhost:7003/service/Users/Login", {
         UserEmail: formData.Email,
-        UserPassword: formData.Password
+        UserPassword: formData.Password,
+        withCredentials: true, // Thêm dòng này
       });
       
-      alert(response.data); // Show success message
+      alert(response.data.message); // Show success message
       navigate('/')
       // setisLogin(true)
       console.log(response.data)

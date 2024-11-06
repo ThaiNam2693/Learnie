@@ -29,9 +29,8 @@ const Register = () => {
         UserPassword: formData.Password
       });
       
-      alert(response.data); // Show success message
+      alert(response.data.message); // Show success message
       navigate('/login')
-      console.log(response.data)
     } catch (error) {
       if (error.response) {
         alert(error.response.data); // Show error message from server
